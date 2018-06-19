@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace="member">
+	<!--
+	MEMBER_SEQ
+	MEMBER_ID
+	PASSWORD
+	CRYPT_PASSWORD
+	NAME
+	EMAIL
+	CELLPHONE
+	REGISTER_SEQ
+	REGISTRY_DATE
+	MODIFIER_SEQ
+	MODIFY_DATE
+	ORGANIZATION_SEQ
+	  -->
+	<select id="list" resultType="Map" parameterType="Map" timeout="10">
+	 select
+		MEMBER_SEQ,
+		MEMBER_ID,
+		PASSWORD,
+		CRYPT_PASSWORD,
+		NAME,
+		EMAIL,
+		CELLPHONE,
+		REGISTER_SEQ,
+		REGISTRY_DATE,
+		MODIFIER_SEQ,
+		MODIFY_DATE,
+		ORGANIZATION_SEQ
+	from CIP_MEMBER
+	</select>
+
+	<select id="read" resultType="Map" parameterType="Map">
+	 select
+		MEMBER_SEQ,
+		MEMBER_ID,
+		PASSWORD,
+		CRYPT_PASSWORD,
+		NAME,
+		EMAIL,
+		CELLPHONE,
+		REGISTER_SEQ,
+		REGISTRY_DATE,
+		MODIFIER_SEQ,
+		MODIFY_DATE,
+		ORGANIZATION_SEQ
+	from CIP_MEMBER
+	where MEMBER_SEQ = #{MEMBER_SEQ}
+	</select>
+
+	<insert id="insert" parameterType="Map">
+	 INSERT INTO CIP_MEMBER (
+	 	MEMBER_SEQ,
+		MEMBER_ID,
+		PASSWORD,
+		NAME,
+		EMAIL,
+		CELLPHONE,
+		REGISTER_SEQ,
+		REGISTRY_DATE,
+		MODIFIER_SEQ,
+		MODIFY_DATE,
+		ORGANIZATION_SEQ
+	 )
+	 values(
+	 	#{MEMBER_SEQ},
+		#{MEMBER_ID},
+		#{PASSWORD},
+		#{NAME},
+		#{EMAIL},
+		#{CELLPHONE},
+		#{REGISTER_SEQ},
+		sysdate,
+		#{MODIFIER_SEQ},
+		sysdate,
+		#{ORGANIZATION_SEQ}
+	 )
+	</insert>
+
+	<delete id="delete" parameterType="Map">
+	 delete from CIP_MEMBER
+	 <![CDATA[
+	 where MEMBER_SEQ = #{MEMBER_SEQ}
+	 ]]>
+	</delete>
+
+	<update id="update" parameterType="Map">
+	 update CIP_MEMBER
+	 set
+		MEMBER_ID		=		#{MEMBER_ID},
+		PASSWORD		=		#{PASSWORD},
+		CRYPT_PASSWORD	=		#{CRYPT_PASSWORD},
+		NAME			=		#{NAME},
+		EMAIL			=		#{EMAIL},
+		CELLPHONE		=		#{CELLPHONE},
+		REGISTER_SEQ	=		#{REGISTER_SEQ},
+		REGISTRY_DATE	=		#{REGISTRY_DATE},
+		MODIFIER_SEQ	=		#{MODIFIER_SEQ},
+		MODIFY_DATE		=		#{MODIFY_DATE},
+		ORGANIZATION_SEQ= 		#{ORGANIZATION_SEQ}
+	 <![CDATA[
+	 where MEMBER_SEQ = #{MEMBER_SEQ}
+	 ]]>
+	</update>
+</mapper>

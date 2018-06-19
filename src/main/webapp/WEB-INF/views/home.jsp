@@ -5,12 +5,8 @@
 <html>
 <head>
 <title>Foot Ball by Awesome</title>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<link rel="stylesheet" href="<c:url value='/resources/assets/css/main.css'/>" />
 </head>
 <body class="landing">
-
 	
 		<!-- Banner -->
 		<section id="banner">
@@ -59,11 +55,12 @@
 			</h2>
 			<p>Aliquam ut ex ut augue consectetur interdum. Donec hendrerit
 				imperdiet. Mauris eleifend fringilla nullam aenean mi ligula.</p>
+				
 		</div>
 
 		</section> <section class="spotlight">
 		<div class="image">
-			<img src="images/hoho.jpg" alt="" />
+			<img src="/images/hoho.jpg" alt="" />
 		</div>
 		<div class="content">
 			<h2>
@@ -74,7 +71,7 @@
 		</div>
 		</section> <section class="spotlight">
 		<div class="image">
-			<img src="images/gree.jpg" alt="" />
+			<img src="/images/gree.jpg" alt="" />
 		</div>
 		<div class="content">
 			<h2>

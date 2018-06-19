@@ -24,7 +24,7 @@
 	</definition>
 
 
-	<definition name="*/*" extends="layout.user">
+	<definition name="/*/*" extends="layout.user">
 		<put-attribute name="layout.title" value="{1}/{2}" />
 		<put-attribute name="layout.body"
 			value="/WEB-INF/views/{1}/{2}.jsp" />
