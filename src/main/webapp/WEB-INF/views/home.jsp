@@ -1,11 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<title>Foot Ball by Awesome</title>
-</head>
+
 <body class="landing">
 	
 		<!-- Banner -->
@@ -20,28 +16,8 @@
 				<li><a href="#" class="button special">Activate</a></li>
 			</ul>
 		</div>
-		<a href="#one" class="more scrolly">Learn More</a> </section>
+		<a href="#two" class="more scrolly">Learn More</a> </section>
 
-		<!-- One -->
-		<section id="one" class="wrapper style1 special">
-		<div class="inner">
-			<header class="major">
-			<h2>Matching Community</h2>
-
-			<p>
-				All of Futsal And Foot ball <br />
-			</p>
-			</header>
-			<ul class="icons major">
-				<li><span class="icon fa-futbol-o major style1"><span
-						class="label">Lorem</span></span></li>
-				<li><span class="icon fa-trophy major style2"><span
-						class="label">Ipsum</span></span></li>
-				<li><span class="icon fa-apple major style3"><span
-						class="label">Dolor</span></span></li>
-			</ul>
-		</div>
-		</section>
 
 		<!-- Two -->
 		<section id="two" class="wrapper alt style2"> <section
@@ -80,8 +56,5 @@
 			<p>Aliquam ut ex ut augue consectetur interdum. Donec hendrerit
 				imperdiet. Mauris eleifend fringilla nullam aenean mi ligula.</p>
 		</div>
-		</section> </section>
-
-	
+		</section> </section>	
 </body>
-</html>
