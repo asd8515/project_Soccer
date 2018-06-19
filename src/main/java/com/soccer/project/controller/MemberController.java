@@ -13,6 +13,7 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -27,11 +28,11 @@ public class MemberController {
    @Autowired
    private MemberService service;
 
-   @RequestMapping(value = MAPPING, method = { RequestMethod.GET, RequestMethod.POST })
-   public ModelAndView actionMethod(@RequestParam Map<String, Object> paramMap, ModelAndView modelandView) {
+   @RequestMapping(value = MAPPING+"/{action}", method = { RequestMethod.GET, RequestMethod.POST })
+   public ModelAndView actionMethod(@RequestParam Map<String, Object> paramMap, @PathVariable String action, 
+		   										ModelAndView modelandView) {
 
-      String viewName = MAPPING + "/";
-      String action = (String) paramMap.get("action");
+	  String viewName = MAPPING + "/";
 
       Map<String, Object> resultMap = new HashMap<String, Object>();
       List<Object> resultList = new ArrayList<Object>();
@@ -50,7 +51,7 @@ public class MemberController {
     	  resultList = (List<Object>) service.deleteObject(paramMap);
       } else if ("signup".equalsIgnoreCase(action)) {
     	  viewName = viewName + action;
-    	  resultList = (List<Object>) service.insertObject(paramMap);
+//    	  resultList = (List<Object>) service.insertObject(paramMap);
       } else {
          viewName = viewName + "list";
          resultList = (List<Object>) service.getList(paramMap);

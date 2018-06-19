@@ -5,7 +5,6 @@
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<body>
 	<header id="header">
 	<h1>
 		<a href="<c:url value='/'/>">FM</a>
@@ -23,6 +22,8 @@
 				</ul>
 			</div></li>
 	</ul>
-	</nav> </header>
-</body>
+	</nav>
+	
+	</header>
+
 </html>

@@ -29,7 +29,8 @@ public class MatchingController {
    private MatchingService service;
 
    @RequestMapping(value = MAPPING+"/{action}", method = { RequestMethod.GET, RequestMethod.POST })
-   public ModelAndView actionMethod(@RequestParam Map<String, Object> paramMap,  @PathVariable String action,ModelAndView modelandView) {
+   public ModelAndView actionMethod(@RequestParam Map<String, Object> paramMap, @PathVariable String action
+		   													,ModelAndView modelandView) {
 
       String viewName = MAPPING + "/";
       
