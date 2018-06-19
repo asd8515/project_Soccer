@@ -16,13 +16,14 @@ public class MemberService {
 
     @Autowired
     private ShareDao dao;
-	@Autowired
+	
+    @Autowired
 	private CommonUtil commonUtil;
 	
 	//read, list
     public Object getObject(Object dataMap) {
     	String sqlMapId = "member.read";
-    	Object resultObject = dao.getObject(sqlMapId, dataMap);
+		Map resultObject = (Map) dao.getObject(sqlMapId, dataMap);
     	    	
     	return resultObject;
     }
@@ -42,24 +43,37 @@ public class MemberService {
     	//call getList() method.
     	return getList(dataMap);
     }
-    
-    public Object insertObject(Object dataMap) {
-    	String sqlMapId = "member.insert";
-    	//fill REGISTER_SEQ / MDIFIER_SEQ / ORGANNIZATION_SEQ
-    	dataMap = putSomeValues(dataMap);
+    /*
+	 * 2018. 6. 19. 오후 7:46:42 written by cla:p  
+	 * 
+	 * 
+	 */
+    public Object saveObject(Object dataMap) {
+    	Map<String, Object> paramMap = (Map<String, Object>) dataMap;
+    	String defaultAuthorityID = "UUID-A001";
+    	String uniqueSequence = (String) paramMap.get("MEMBER_SEQ");
     	
-    	dao.insertObject(sqlMapId, dataMap);
+    	//signup case
+    	if("".equals(uniqueSequence)){
+			uniqueSequence = commonUtil.getUniqueSequence();
+			paramMap.put("ID_AUTHORITY", defaultAuthorityID);
+			
+		}
     	
-    	//call getList() method.    	
-    	return getList(dataMap);
+    	paramMap.put("MEMBER_SEQ", uniqueSequence);
+    	
+    	String sqlMapId = "member.merge";
+    	
+    	Integer resultKey = (Integer) dao.saveObject(sqlMapId, paramMap);
+    	
+    	//authorities
+
+    	
+//		authorityRmemberService.insertObject(paramMap);
+
+    	
+    	//call getObject() method.    	
+    	return getObject(dataMap);
     }
-    
-    public Object putSomeValues(Object dataMap) {
-    	((Map<String, Object>)dataMap).put("REGISTER_SEQ", "UUID-2222-2222222");
-    	((Map<String, Object>)dataMap).put("MODIFIER_SEQ", "UUID-2222-2222222");
-    	((Map<String, Object>)dataMap).put("ORGANIZATION_SEQ", "UUID-11-CIPI9Z");
-    	Object resultMap = dataMap;
-    	
-    	return resultMap;
-    }
+
 }

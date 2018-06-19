@@ -49,9 +49,17 @@ public class MemberController {
       } else if ("delete".equalsIgnoreCase(action)) {
     	  viewName = viewName + action;
     	  resultList = (List<Object>) service.deleteObject(paramMap);
-      } else if ("signup".equalsIgnoreCase(action)) {
+      }
+    
+/*
+ * 
+ * 2018. 6. 19. 오후 7:00:51 written by cla:p  
+ * 
+ */
+      else if ("signup".equalsIgnoreCase(action)) {
     	  viewName = viewName + action;
-//    	  resultList = (List<Object>) service.insertObject(paramMap);
+    	  resultMap = (Map<String, Object>) service.insertObject(paramMap);
+    	  
       } else {
          viewName = viewName + "list";
          resultList = (List<Object>) service.getList(paramMap);
