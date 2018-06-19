@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>
+<c:set var="principalName" value="${pageContext.request.userPrincipal.name}"/>
 
 	<header id="header">
 	<h1>
@@ -17,6 +18,8 @@
 					<li><a href="<c:url value='/matching/edit'/> ">Register Matching</a></li>
 					<li><a href="<c:url value='/member/signup'/> ">Sign up</a></li>
 					<li><a href="<c:url value='/login'/> ">Log in</a></li>
+					<li><a href="<c:url value='/j_spring_security_logout'/> ">Log out</a></li>
+					<li><a href="<c:url value="#"/> ">${principalName}</a></li>
 				</ul>
 			</div></li>
 	</ul>

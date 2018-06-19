@@ -17,20 +17,22 @@
 		
 	
        <!-- return boolean -->
-       <intercept-url pattern="/**" access="permitAll()"/>
+       <!--intercept-url pattern="/**" access="permitAll()"/-->
        
-       <!-- <intercept-url pattern="/*" access="permitAll()"/>
-       <intercept-url pattern="/member/list" access="hasAnyRole('ROLE_MANAGER', 'ROLE_ADMIN', 'ROLE_SYSTEM')"/>
-       <intercept-url pattern="/member/read" access="hasAnyRole('ROLE_MANAGER', 'ROLE_ADMIN', 'ROLE_SYSTEM')"/>
-       <intercept-url pattern="/member/*" access="hasAnyRole('ROLE_ADMIN', 'ROLE_SYSTEM')"/>
+       <!-- permitAll -->
+       <intercept-url pattern="/*" access="permitAll()"/>
+<!--        <intercept-url pattern="/matching/list" access="permitAll()"/> -->
+<!--        <intercept-url pattern="/matching/read" access="permitAll()"/> -->
+<!--        <intercept-url pattern="/member/signup" access="permitAll()"/> -->
        
-       <intercept-url pattern="/organization/list" access="permitAll()"/>
-       <intercept-url pattern="/organization/read" access="hasAnyRole('ROLE_USER', 'ROLE_MANAGER', 'ROLE_ADMIN', 'ROLE_SYSTEM')"/>
-       <intercept-url pattern="/organization/*" access="hasAnyRole('ROLE_MANAGER', 'ROLE_ADMIN', 'ROLE_SYSTEM')"/>
-       
-       <intercept-url pattern="/commonCode/list" access="hasAnyRole('ROLE_ADMIN', 'ROLE_SYSTEM')"/>
-       <intercept-url pattern="/commonCode/read" access="hasAnyRole('ROLE_ADMIN', 'ROLE_SYSTEM')"/>
-       <intercept-url pattern="/commonCode/*" access="hasAnyRole('ROLE_SYSTEM')"/> -->
+<!--        permitMember -->
+<!--        <intercept-url pattern="/matching/*" access="hasAnyRole('USER', 'MANAGER')"/> -->
+<!--        <intercept-url pattern="/member/*" access="hasAnyRole('USER', 'MANAGER')"/> -->
+       <intercept-url pattern="/matching/edit" access="hasAnyRole('UUID-A001', 'UUID-A002')"/>
+      
+       <!-- permitManager -->
+       <intercept-url pattern="/member/list" access="hasAnyRole('MANAGER')"/>
+       <intercept-url pattern="/member/delete" access="hasAnyRole('MANAGER')"/>
    </http>    
     
    <authentication-manager >
@@ -39,11 +41,11 @@
 		   			users-by-username-query="SELECT MEMBER_SEQ as username
 		   									, PASSWORD as password
 		   									, 1 as enabled
-		   									FROM CIP_MEMBER
-		   									WHERE MEMBER_ID = ?"
+		   									FROM MEMBER
+		   									WHERE EMAIL = ?"
 		   			authorities-by-username-query="SELECT MEMBER_SEQ as username
-				   									, AUTHORITY_ID as authority
-				   									FROM CIP_AUTHORITY_MEMBER
+				   									, ID_AUTHORITY as authority
+				   									FROM AUTHORITY_REL
 				   									WHERE MEMBER_SEQ = ?" />
            <!-- <user-service>
                 <user name="user@a.b" password="1234" authorities="ROLE_USER"/>

@@ -3,11 +3,10 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 		<div class="wrapper">
-			<form class="form-signin" action="<c:url value='/loginstatus'/>"
-				method="POST">
+			<form class="form-signin" role="form" action="<c:url value='/j_spring_security_check' />" method="POST">
 				<h2 class="form-signin-heading">F.b login</h2>
 				<label for="email"><b>Email</b></label>
-				<input type="text" class="form-control" name="username"
+				<input type="text" class="form-control" name="email"
 					placeholder="Email Address" required="" autofocus="" /> 
 					
 					<label for="psw"><b>Password</b></label>
@@ -19,18 +18,4 @@
 				<button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>
 			</form>
 		</div>
-		<footer id="footer">
-		<ul class="icons">
-			<li><a href="https://www.apple.com/" class="icon fa-apple"><span
-					class="label">Twitter</span></a></li>
-			<li><a href="https://www.facebook.com/" class="icon fa-facebook"><span
-					class="label">Facebook</span></a></li>
-			<li><a href="https://www.instagram.com/?hl=ko"
-				class="icon fa-instagram"><span class="label">Instagram</span></a></li>
-		</ul>
-		<ul class="copyright">
-			<li>&copy; Untitled</li>
-			<li>Design: <a href="#">PARK HONG</a></li>
-		</ul>
-		</footer>
 	</div>
