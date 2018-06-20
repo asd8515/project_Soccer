@@ -43,13 +43,13 @@ public class MemberService {
     	//call getList() method.
     	return getList(dataMap);
     }
+    
     /*
 	 * 2018. 6. 19. 오후 7:46:42 written by cla:p  
-	 * 
-	 * 
 	 */
     public Object saveObject(Object dataMap) {
     	Map<String, Object> paramMap = (Map<String, Object>) dataMap;
+    	
     	String defaultAuthorityID = "UUID-A001";
     	String uniqueSequence = (String) paramMap.get("MEMBER_SEQ");
     	
@@ -57,10 +57,10 @@ public class MemberService {
     	if("".equals(uniqueSequence)){
 			uniqueSequence = commonUtil.getUniqueSequence();
 			paramMap.put("ID_AUTHORITY", defaultAuthorityID);
-			
 		}
     	
     	paramMap.put("MEMBER_SEQ", uniqueSequence);
+    	
     	
     	String sqlMapId = "member.merge";
     	
