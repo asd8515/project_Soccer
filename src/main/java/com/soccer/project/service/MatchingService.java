@@ -48,7 +48,7 @@ public class MatchingService {
     	//fill REGISTER_SEQ / MDIFIER_SEQ / ORGANNIZATION_SEQ
     	dataMap = putSomeValues(dataMap);
     	
-    	dao.insertObject(sqlMapId, dataMap);
+    	dao.saveObject(sqlMapId, dataMap);
     	
     	//call getList() method.    	
     	return getList(dataMap);
