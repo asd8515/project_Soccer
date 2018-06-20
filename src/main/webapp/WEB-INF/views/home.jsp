@@ -24,13 +24,13 @@
 		<c:forEach items="${resultList}" var="resultData" varStatus="loop">
 			<section class="spotlight">
 				<div class="image">
-					<p>Rank : ${resultData.ID_LEVEL}</p>
+					<img src="resources/images/${resultData.IMG_NAME}" />
 				</div>
 				<div class="content">
 					<h2>${resultData.MESSAGE}</h2>
 					<p>
-						등록일 : ${resultData.WRITEDATE} <br>
-						Level : ${resultData.ID_LEVEL}
+						Level : ${resultData.LEVEL_NAME} <br>
+						registration date : ${resultData.WRITEDATE} <br>
 					</p>
 				</div>
 			</section>
