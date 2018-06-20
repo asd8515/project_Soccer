@@ -34,8 +34,8 @@ public class MemberService {
 
         return resultList;
     }
-	//---end of read, list
-    
+
+    //---end of read, list  
     public Object deleteObject(Object dataMap) {
     	String sqlMapId = "member.delete";
     	dao.deleteObject(sqlMapId, dataMap);
@@ -64,7 +64,6 @@ public class MemberService {
     	String sqlMapId = "member.merge";
     	
     	Integer resultKey = (Integer) dao.saveObject(sqlMapId, paramMap);
-
     	
     	//authorities
 //		authorityRmemberService.insertObject(paramMap);
