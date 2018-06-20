@@ -1,111 +1,123 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
 
 <!DOCTYPE mapper
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
     
 <mapper namespace="member">
-	<!--
-	MEMBER_SEQ
-	MEMBER_ID
-	PASSWORD
-	CRYPT_PASSWORD
-	NAME
-	EMAIL
-	CELLPHONE
-	REGISTER_SEQ
-	REGISTRY_DATE
-	MODIFIER_SEQ
-	MODIFY_DATE
-	ORGANIZATION_SEQ
-	  -->
-	<select id="list" resultType="Map" parameterType="Map" timeout="10">
-	 select
-		MEMBER_SEQ,
-		MEMBER_ID,
-		PASSWORD,
-		CRYPT_PASSWORD,
-		NAME,
-		EMAIL,
-		CELLPHONE,
-		REGISTER_SEQ,
-		REGISTRY_DATE,
-		MODIFIER_SEQ,
-		MODIFY_DATE,
-		ORGANIZATION_SEQ
-	from CIP_MEMBER
+	<select id="list" resultType="Map" parameterType="Map">
+	    select 
+			MEMBER_SEQ	
+			, EMAIL
+			, NAME
+			, PHONE
+			, PASSWORD
+		from MEMBER
+		<![CDATA[
+		where 1 = 1
+		]]>
 	</select>
 
 	<select id="read" resultType="Map" parameterType="Map">
-	 select
-		MEMBER_SEQ,
-		MEMBER_ID,
-		PASSWORD,
-		CRYPT_PASSWORD,
-		NAME,
-		EMAIL,
-		CELLPHONE,
-		REGISTER_SEQ,
-		REGISTRY_DATE,
-		MODIFIER_SEQ,
-		MODIFY_DATE,
-		ORGANIZATION_SEQ
-	from CIP_MEMBER
-	where MEMBER_SEQ = #{MEMBER_SEQ}
+	    select 
+			MEMBER_SEQ	
+			, EMAIL
+			, NAME
+			, PHONE
+			, PASSWORD
+		from MEMBER
+		<where>
+			and MEMBER_SEQ = #{MEMBER_SEQ}
+		    <!-- choose>	using by CustomizeUserDetailsService.java
+		        <when test="MEMBER_ID != null">
+					and MEMBER_ID = #{MEMBER_ID}
+		        </when>
+		        <when test="MEMBER_SEQ != null">
+					and MEMBER_SEQ = #{MEMBER_SEQ}
+		        </when>
+		    </choose-->
+		</where>
 	</select>
 
-	<insert id="insert" parameterType="Map">
-	 INSERT INTO CIP_MEMBER (
-	 	MEMBER_SEQ,
-		MEMBER_ID,
-		PASSWORD,
-		NAME,
-		EMAIL,
-		CELLPHONE,
-		REGISTER_SEQ,
-		REGISTRY_DATE,
-		MODIFIER_SEQ,
-		MODIFY_DATE,
-		ORGANIZATION_SEQ
-	 )
-	 values(
-	 	#{MEMBER_SEQ},
-		#{MEMBER_ID},
-		#{PASSWORD},
-		#{NAME},
-		#{EMAIL},
-		#{CELLPHONE},
-		#{REGISTER_SEQ},
-		sysdate,
-		#{MODIFIER_SEQ},
-		sysdate,
-		#{ORGANIZATION_SEQ}
-	 )
+	<insert id="merge" parameterType="Map">
+	
+		MERGE INTO MEMBER M1 
+		     USING (SELECT #{MEMBER_SEQ} AS MEMBER_SEQ FROM DUAL) M2
+				ON (M1.MEMBER_SEQ = M2.MEMBER_SEQ)
+		WHEN MATCHED THEN 
+			UPDATE SET
+				EMAIL		= #{EMAIL}
+				, NAME		= #{NAME}
+				, PHONE		= #{PHONE}
+				, PASSWORD	= #{PASSWORD}
+		WHEN NOT MATCHED THEN 
+			INSERT(
+				MEMBER_SEQ	
+				, EMAIL
+				, NAME
+				, PHONE
+				, PASSWORD
+			)
+			values(
+				#{MEMBER_SEQ}
+				, #{EMAIL}
+				, #{NAME}
+				, #{PHONE}
+				, #{PASSWORD}
+			)
+		
+<!-- 		MERGE INTO CIP_MEMBER CIP1
+		     USING (SELECT #{MEMBER_SEQ} AS MEMBER_SEQ FROM DUAL) CIP2
+		        ON (CIP1.MEMBER_SEQ = CIP2.MEMBER_SEQ)
+		 WHEN MATCHED THEN
+		    UPDATE SET
+				MEMBER_ID = #{MEMBER_ID} 회원 ID
+				, PASSWORD = #{PASSWORD} 암호
+				, CRYPT_PASSWORD = #{CRYPT_PASSWORD}	암호화된 암호
+				, NAME = #{NAME} 명칭
+				, EMAIL = #{EMAIL} EMAIL
+				, CELLPHONE = #{CELLPHONE} 휴대폰번호
+				, ORGANIZATION_SEQ = #{ORGANIZATION_SEQ} 조직 일련번호
+				, MODIFIER_SEQ = #{MODIFIER_SEQ} 수정자_SEQ
+				, MODIFY_DATE = sysdate 수정일자
+		 WHEN NOT MATCHED THEN
+		    INSERT (
+				MEMBER_SEQ 회원_SEQ
+				, MEMBER_ID 회원 ID
+				, PASSWORD 암호
+				, CRYPT_PASSWORD	암호화된 암호
+				, NAME 명칭
+				, EMAIL EMAIL
+				, CELLPHONE 휴대폰번호
+				, ORGANIZATION_SEQ 조직 일련번호
+				, REGISTER_SEQ 등록자SEQ
+				, REGISTRY_DATE 등록일자
+				, MODIFIER_SEQ 수정자_SEQ
+				, MODIFY_DATE 수정일자
+			)
+			values(
+				#{MEMBER_SEQ} 회원_SEQ
+				, #{MEMBER_ID} 회원 ID
+				, #{PASSWORD} 암호
+				, #{CRYPT_PASSWORD}	암호화된 암호
+				, #{NAME} 명칭
+				, #{EMAIL} EMAIL
+				, #{CELLPHONE} 휴대폰번호
+				, #{ORGANIZATION_SEQ} 조직 일련번호
+				, #{REGISTER_SEQ} 등록자SEQ
+				, sysdate 등록일자
+				, #{REGISTER_SEQ} 수정자_SEQ
+				, sysdate 수정일자
+			) -->
+	    <!-- selectKey resultType="int" keyProperty="cnt" order="BEFORE">
+			SELECT count(1)
+			FROM CIP_MEMBER
+			WHERE MEMBER_SEQ = #{MEMBER_SEQ}
+		</selectKey -->
 	</insert>
 
 	<delete id="delete" parameterType="Map">
-	 delete from CIP_MEMBER
-	 <![CDATA[
-	 where MEMBER_SEQ = #{MEMBER_SEQ}
-	 ]]>
+		delete from MEMBER
+		where MEMBER_SEQ = #{MEMBER_SEQ}
 	</delete>
-
-	<update id="update" parameterType="Map">
-	 update CIP_MEMBER
-	 set
-		MEMBER_ID		=		#{MEMBER_ID},
-		PASSWORD		=		#{PASSWORD},
-		CRYPT_PASSWORD	=		#{CRYPT_PASSWORD},
-		NAME			=		#{NAME},
-		EMAIL			=		#{EMAIL},
-		CELLPHONE		=		#{CELLPHONE},
-		REGISTER_SEQ	=		#{REGISTER_SEQ},
-		REGISTRY_DATE	=		#{REGISTRY_DATE},
-		MODIFIER_SEQ	=		#{MODIFIER_SEQ},
-		MODIFY_DATE		=		#{MODIFY_DATE},
-		ORGANIZATION_SEQ= 		#{ORGANIZATION_SEQ}
-	 <![CDATA[
-	 where MEMBER_SEQ = #{MEMBER_SEQ}
-	 ]]>
-	</update>
 </mapper>

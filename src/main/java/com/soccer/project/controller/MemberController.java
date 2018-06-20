@@ -58,8 +58,9 @@ public class MemberController {
  */
       else if ("signup".equalsIgnoreCase(action)) {
     	  viewName = viewName + action;
+      }else if ("merge".equalsIgnoreCase(action)) {
+    	  viewName = viewName + action;
     	  resultMap = (Map<String, Object>) service.saveObject(paramMap);
-    	  
       } else {
          viewName = viewName + "list";
          resultList = (List<Object>) service.getList(paramMap);

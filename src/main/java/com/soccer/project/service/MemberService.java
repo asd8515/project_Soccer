@@ -54,21 +54,19 @@ public class MemberService {
     	String uniqueSequence = (String) paramMap.get("MEMBER_SEQ");
     	
     	//signup case
-    	if("".equals(uniqueSequence)){
+    	if(uniqueSequence == null){
 			uniqueSequence = commonUtil.getUniqueSequence();
 			paramMap.put("ID_AUTHORITY", defaultAuthorityID);
 		}
     	
     	paramMap.put("MEMBER_SEQ", uniqueSequence);
     	
-    	
     	String sqlMapId = "member.merge";
     	
     	Integer resultKey = (Integer) dao.saveObject(sqlMapId, paramMap);
-    	
-    	//authorities
 
     	
+    	//authorities
 //		authorityRmemberService.insertObject(paramMap);
 
     	
