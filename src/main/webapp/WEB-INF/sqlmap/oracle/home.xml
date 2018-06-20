@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace="home">
+	<select id="list" resultType="Map" parameterType="Map" timeout="10">
+		SELECT B.ID_LEVEL as ID_LEVEL, B.WRITEDATE as WRITEDATE, B.MESSAGE as MESSAGE, F."LEVEL" as LEVEL_NAME, F.IMG_NAME as IMG_NAME
+		FROM BOARD B INNER JOIN (SELECT ID_LEVEL, max(WRITEDATE) as thelatest
+                                 FROM BOARD
+                                 GROUP BY ID_LEVEL
+                                 ORDER BY ID_LEVEL DESC) S 
+		ON B.WRITEDATE = S.thelatest and B.ID_LEVEL = S.ID_LEVEL 
+			INNER JOIN FB_LEVEL F 
+			ON F.ID_LEVEL = S.ID_LEVEL
+		ORDER BY ID_LEVEL DESC
+	</select>
+</mapper>
