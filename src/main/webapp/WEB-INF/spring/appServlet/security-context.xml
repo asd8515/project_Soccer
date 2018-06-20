@@ -28,31 +28,32 @@
 <!--        permitMember -->
 <!--        <intercept-url pattern="/matching/*" access="hasAnyRole('USER', 'MANAGER')"/> -->
 <!--        <intercept-url pattern="/member/*" access="hasAnyRole('USER', 'MANAGER')"/> -->
-       <intercept-url pattern="/matching/edit" access="hasAnyRole('UUID-A001', 'UUID-A002')"/>
+       <intercept-url pattern="/matching/edit" access="hasAnyRole('UUID-A002','ROLE_ADMIN')"/>
       
-       <!-- permitManager -->
-       <intercept-url pattern="/member/list" access="hasAnyRole('MANAGER')"/>
-       <intercept-url pattern="/member/delete" access="hasAnyRole('MANAGER')"/>
+<!--        permitManager -->
+<!--        <intercept-url pattern="/member/list" access="hasAnyRole('MANAGER')"/> -->
+<!--        <intercept-url pattern="/member/delete" access="hasAnyRole('MANAGER')"/> -->
    </http>    
     
    <authentication-manager >
        <authentication-provider>
-		   <jdbc-user-service data-source-ref="dataSource"
-		   			users-by-username-query="SELECT MEMBER_SEQ as username
-		   									, PASSWORD as password
-		   									, 1 as enabled
-		   									FROM MEMBER
-		   									WHERE EMAIL = ?"
-		   			authorities-by-username-query="SELECT MEMBER_SEQ as username
-				   									, ID_AUTHORITY as authority
-				   									FROM AUTHORITY_REL
-				   									WHERE MEMBER_SEQ = ?" />
-           <!-- <user-service>
-                <user name="user@a.b" password="1234" authorities="ROLE_USER"/>
-                <user name="admin@a.b" password="1234" authorities="ROLE_ADMIN"/>
-                <user name="manager@a.b" password="1234" authorities="ROLE_MANAGER"/>
-                <user name="system@a.b" password="1234" authorities="ROLE_SYSTEM"/>
-           </user-service> -->
+	<jdbc-user-service data-source-ref="dataSource"	
+	users-by-username-query="SELECT MEMBER_SEQ as username
+ 							, PASSWORD as password 
+ 							, 1 as enabled 
+ 							FROM MEMBER 
+ 							WHERE EMAIL = ?" 
+	authorities-by-username-query="SELECT MEMBER_SEQ as username
+								  , ID_AUTHORITY as authority
+								  FROM AUTHORITY_REL
+								  WHERE MEMBER_SEQ = ?" />
+								  <!-- 
+								  <user-service>
+               <user name="user@a.b" password="1234" authorities="ROLE_USER"/>
+               <user name="admin@a.b" password="1234" authorities="ROLE_ADMIN"/>
+               <user name="manager@a.b" password="1234" authorities="ROLE_MANAGER"/>
+               <user name="system@a.b" password="1234" authorities="ROLE_SYSTEM"/>
+          </user-service> -->
        </authentication-provider>
    </authentication-manager>
 
