@@ -13,9 +13,22 @@
 			, PHONE
 			, PASSWORD
 		from MEMBER
-		<![CDATA[
-		where 1 = 1
-		]]>
+ 		<where>
+ 			<choose>
+			    <when test="SEARCH_OPTION == null">
+			        and 1=1
+			    </when>
+			    <when test="SEARCH_OPTION == 'BY_EMAIL'">
+			    	and EMAIL = #{SEARCH_KEYWORD}
+			    </when>
+			    <when test="SEARCH_OPTION == 'BY_NAME'">
+			    	and NAME = #{SEARCH_KEYWORD}
+			    </when>
+			    <otherwise>
+			    	and 1=1
+			    </otherwise>
+		    </choose>
+		</where>
 	</select>
 
 	<select id="read" resultType="Map" parameterType="Map">

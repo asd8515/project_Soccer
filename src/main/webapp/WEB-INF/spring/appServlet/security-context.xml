@@ -20,7 +20,7 @@
        <!--intercept-url pattern="/**" access="permitAll()"/-->
        
        <!-- permitAll -->
-       <intercept-url pattern="/*" access="permitAll()"/>
+       <intercept-url pattern="/**" access="permitAll()"/>
 <!--        <intercept-url pattern="/matching/list" access="permitAll()"/> -->
 <!--        <intercept-url pattern="/matching/read" access="permitAll()"/> -->
 <!--        <intercept-url pattern="/member/signup" access="permitAll()"/> -->
