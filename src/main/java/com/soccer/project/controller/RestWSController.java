@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.soccer.project.service.MatchingService;
 import com.soccer.project.service.MemberService;
 
 /*
@@ -26,24 +27,29 @@ public class RestWSController {
 
 	private final static String MAPPING = "/ws/";
 
-//	@Autowired
-//	private AuthorityService authorityService;
+	// @Autowired
+	// private AuthorityService authorityService;
 
 	@Autowired
 	private MemberService memberService;
 
+	@Autowired
+	private MatchingService matchingService;
+
 	// Restful
-	@RequestMapping(value = MAPPING+"{action}", method = { RequestMethod.GET, RequestMethod.POST }, produces = "application/json")
+	@RequestMapping(value = MAPPING + "{action}", method = { RequestMethod.GET,
+			RequestMethod.POST }, produces = "application/json")
 	public Object actionMethod(@RequestParam Map<String, Object> paramMap, @PathVariable String action) {
-		
+
 		List<Object> resultList = new ArrayList<Object>();
 
 		if ("memberList".equalsIgnoreCase(action)) {
 			resultList = (List<Object>) memberService.getList(paramMap);
-		}else if("authorityList".equalsIgnoreCase(action)) {
-		}else if("assignedAuthorityList".equalsIgnoreCase(action)) {
+		} else if ("matchingList".equalsIgnoreCase(action)) {
+			resultList = (List<Object>) matchingService.getList(paramMap);
+		} else if ("assignedAuthorityList".equalsIgnoreCase(action)) {
 		}
 
-		return resultList;	
+		return resultList;
 	}
 }

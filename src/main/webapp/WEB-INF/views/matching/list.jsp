@@ -1,152 +1,88 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
-<body class="landing">
-		<!-- Main -->
-		<article id="main"> <header>
-		<h2>MAtching Page</h2>
-		<p>Anytime, Anywhere, Anyone can match.</p>
-		</header> <section class="wrapper style5">
-		<div class="inner"></div>
+<script>
+var fn_setFormTagList = function(url, id, params) {
+	$.ajax({
+		type : "POST", url : url, data : {'SEARCH_OPTION': '${paramMap.SEARCH_OPTION}', 'SEARCH_KEYWORD': '${paramMap.SEARCH_KEYWORD}'}, cache : false
+		, success : function(data) {
+			var formTag = "<table><thead>"
+						+ "<tr><th>Location</th>"
+							+ "<th>Level</th>"
+							+ "<th>Message</th>"
+							+ "<th>Written by</th>"
+							+ "<th>Statement</th>"
+							+ "<th>Reporting Date</th>"
+							+ "<th>MODIFY/DELETE</th>"
+						+ "<tr></thead>"
+						+ "<tbody>";
+			$.each(data, function(i,item){
+				formTag += '<tr>'
+							+ '<td>'+ item.REGION +'</td>'
+							+ '<td>'+ item.LEVEL_NAME +'</td>'
+							+ '<td>'+ item.MESSAGE +'</td>'
+							+ '<td>'+ item.NAME +'</td>'
+							+ '<td>'+ item.MATCHED +'</td>'
+							+ '<td>'+ item.WRITEDATE +'</td>'
+							+ '<td><button type="button" class="btn btn-primary">modify</button>'
+							+    '<button type="button" class="btn btn-primary">delete</button></td>'
+							+ '</tr>';
+			});
+			formTag += '</tbody><table>';
+			$('#'+id).html(formTag);
+		}
+		, error : function(xhr,status,exception) {
+			alert("Failure \n ("+status+")");
+			return false;
+		}
+	});
+}
+$(function(){
+/* 	fn_setFormTagList("<c:url value='/ws/memberList' />", "memberDIV", "${resultMap.SEARCH_OPTION}"); */
+	fn_setFormTagList("<c:url value='/ws/matchingList' />", "matchingDIV");
+});
+</script>
+
+<!-- Main -->
+
+<article id="main">
+	<header>
+		<h2>Member Management</h2>
+		<p>You can manage members.</p>
+	</header>
+	<section class="wrapper style5">
+	<div class="inner">
 		<section>
-		<div class="select-wrapper">
-			<select name="demo-category" id="demo-category">
-				<option value="">- Area -</option>
-				<option value="1">도봉/노원/강북/중랑</option>
-				<option value="1">성북/동대문/종로</option>
-				<option value="1">은평/서대문/마포</option>
-				<option value="1">용산/중구</option>
-				<option value="1">성동/광진/강동</option>
-				<option value="1">송파/서초/강남</option>
-				<option value="1">금천/관악/동작</option>
-			</select>
-		</div>
-		</section> <section>
-		<h4>Level</h4>
-		<form method="post" action="#">
-			<div class="row uniform">
-
-				<div class="12u$">
-					<div class="select-wrapper"></div>
+			<h4>Searching Option</h4>
+			<form role="form" action="<c:url value='/matching/list' />"	method='POST'>
+				<div class="row uniform">
+						<div class="4u 12u$(small)">
+							<input type="radio" id="SEARCH_OPTION_BY_LOCATION" name="SEARCH_OPTION" value="BY_LOCATION" checked>
+							<label for="SEARCH_OPTION_BY_LOCATION">LOCATION</label>
+							<input type="radio" id="SEARCH_OPTION_BY_LEVEL" name="SEARCH_OPTION" value="BY_LEVEL">
+							<label for="SEARCH_OPTION_BY_LEVEL">LEVEL</label>
+						</div>
+						<div class="10u 12u$(small)">
+							<input type="text" id="" name="SEARCH_KEYWORD"
+								placeholder="please type keyword.">
+						</div>
+						<div class="2u 12u$(small)">
+							<button type="submit">SEARCH</button>
+						</div>
 				</div>
-				<div class="4u 12u$(small)">
-					<input type="radio" id="demo-priority-low" name="demo-priority"
-						checked> <label for="demo-priority-low">High</label>
-				</div>
-				<div class="4u 12u$(small)">
-					<input type="radio" id="demo-priority-normal" name="demo-priority">
-					<label for="demo-priority-normal">Middle</label>
-				</div>
-				<div class="4u$ 12u$(small)">
-					<input type="radio" id="demo-priority-high" name="demo-priority">
-					<label for="demo-priority-high">Low</label>
-				</div>
-
-
-			</div>
-		</form>
-		</section> </section> </article>
-
-		<section> </section>
-
-		<section> </section>
-
-		<section>
-		<h4>Table</h4>
-		<h5>Default</h5>
-		<div class="table-wrapper">
-			<table>
-				<thead>
-					<tr>
-						<th>Name</th>
-						<th>Description</th>
-						<th>Price</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<td>Item One</td>
-						<td>Ante turpis integer aliquet porttitor.</td>
-						<td>29.99</td>
-					</tr>
-					<tr>
-						<td>Item Two</td>
-						<td>Vis ac commodo adipiscing arcu aliquet.</td>
-						<td>19.99</td>
-					</tr>
-					<tr>
-						<td>Item Three</td>
-						<td>Morbi faucibus arcu accumsan lorem.</td>
-						<td>29.99</td>
-					</tr>
-					<tr>
-						<td>Item Four</td>
-						<td>Vitae integer tempus condimentum.</td>
-						<td>19.99</td>
-					</tr>
-					<tr>
-						<td>Item Five</td>
-						<td>Ante turpis integer aliquet porttitor.</td>
-						<td>29.99</td>
-					</tr>
-				</tbody>
-				<tfoot>
-					<tr>
-						<td colspan="2"></td>
-						<td>100.00</td>
-					</tr>
-				</tfoot>
-			</table>
-		</div>
-
-		<h5>Alternate</h5>
-		<div class="table-wrapper">
-			<table class="alt">
-				<thead>
-					<tr>
-						<th>Name</th>
-						<th>Description</th>
-						<th>Price</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<td>Item One</td>
-						<td>Ante turpis integer aliquet porttitor.</td>
-						<td>29.99</td>
-					</tr>
-					<tr>
-						<td>Item Two</td>
-						<td>Vis ac commodo adipiscing arcu aliquet.</td>
-						<td>19.99</td>
-					</tr>
-					<tr>
-						<td>Item Three</td>
-						<td>Morbi faucibus arcu accumsan lorem.</td>
-						<td>29.99</td>
-					</tr>
-					<tr>
-						<td>Item Four</td>
-						<td>Vitae integer tempus condimentum.</td>
-						<td>19.99</td>
-					</tr>
-					<tr>
-						<td>Item Five</td>
-						<td>Ante turpis integer aliquet porttitor.</td>
-						<td>29.99</td>
-					</tr>
-				</tbody>
-				<tfoot>
-					<tr>
-						<td colspan="2"></td>
-						<td>100.00</td>
-					</tr>
-				</tfoot>
-			</table>
-		</div>
+			</form>
+			
 		</section>
+		</div>
+	</section>
+</article>
 
-		<section> </section>
+<section class="wrapper style1">
+	<div class="table-wrapper">
+		<div id="matchingDIV"></div>
+	</div>
+</section>
+
+
 
 </body>
+</html>
