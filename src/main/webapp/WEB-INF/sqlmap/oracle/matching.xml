@@ -24,7 +24,10 @@
 			    	and r.region LIKE '%' || #{SEARCH_KEYWORD} || '%'
 			    </when>
 			    <when test="SEARCH_OPTION == 'BY_LEVEL'">
-			    	and l."LEVEL" LIKE '%' || #{SEARCH_KEYWORD} || '%'
+			    	<!-- 대소문자 구문 안하도록 : 둘 다 소문자로 만들어서 비교. -->
+			    	and lower(l."LEVEL") LIKE '%' || lower(#{SEARCH_KEYWORD}) || '%'
+			    	<!-- 찐우 원본 코드 -->
+			    	<!-- and (l."LEVEL" LIKE '%' || #{SEARCH_KEYWORD} || '%' -->
 			    </when>
 			    <otherwise>
 			    	and 1=1
