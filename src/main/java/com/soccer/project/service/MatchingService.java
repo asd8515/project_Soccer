@@ -43,15 +43,25 @@ public class MatchingService {
     	return getList(dataMap);
     }
     
-    public Object insertObject(Object dataMap) {
-    	String sqlMapId = "matching.insert";
-    	//fill REGISTER_SEQ / MDIFIER_SEQ / ORGANNIZATION_SEQ
-    	dataMap = putSomeValues(dataMap);
+    public Object saveObject(Object dataMap) {
     	
-    	dao.saveObject(sqlMapId, dataMap);
+    	Map<String, Object> paramMap = (Map<String, Object>) dataMap;
     	
-    	//call getList() method.    	
-    	return getList(dataMap);
+    	String uniqueSequence = (String) paramMap.get("GAME_SEQ");
+    	String memberSequence = (String) paramMap.get("MEMBER_SEQ");
+    	
+    	if(uniqueSequence == null || uniqueSequence ==""){
+			uniqueSequence = commonUtil.getUniqueSequence();
+		}
+    	
+    	paramMap.put("GAME_SEQ", uniqueSequence);
+    	paramMap.put("MEMBER_SEQ", memberSequence);
+    	
+    	String sqlMapId = "matching.merge";
+    	
+    	Integer resultKey = (Integer) dao.saveObject(sqlMapId, paramMap);
+    	   	
+    	return getObject(dataMap);
     }
     
     public Object putSomeValues(Object dataMap) {
