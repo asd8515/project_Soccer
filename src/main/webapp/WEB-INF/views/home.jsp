@@ -24,7 +24,7 @@
 		<c:forEach items="${resultList}" var="resultData" varStatus="loop">
 			<section class="spotlight">
 				<div class="image">
-					<img src="resources/images/${resultData.IMG_NAME}" />
+					<img src="<c:url value='resources/images/${resultData.IMG_NAME}' />" />
 				</div>
 				<div class="content">
 					<h2>${resultData.MESSAGE}</h2>
