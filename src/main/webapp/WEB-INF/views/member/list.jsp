@@ -22,7 +22,7 @@ var fn_setFormTagList = function(url, id, params) {
 							+ '<td>'
 							+ '<form role="form" method="POST" style="margin: 0 0 0 0">'
 							+ '<input type="hidden" id="" name="MEMBER_SEQ" value="'+ item.MEMBER_SEQ +'">'
-								+ '<button type="submit" class="btn btn-primary"  formaction="'+ '<c:url value="/member/list#" />'+'">modify</button>'
+								+ '<button type="submit" class="btn btn-primary"  formaction="'+ '<c:url value="/member/edit" />'+'">modify</button>'
 								+ '<button type="submit" class="btn btn-primary"  formaction="'+ '<c:url value="/member/delete" />'+'">delete</button></td>'
 							+ '</form></tr>';
 			});

@@ -40,15 +40,10 @@ public class MemberController {
       // divided depending on action value
       if ("edit".equalsIgnoreCase(action)) {
          viewName = viewName + action;
+         resultMap = (Map<String, Object>) service.getObject(paramMap);
       } else if ("read".equalsIgnoreCase(action)) {
          viewName = viewName + action;
          resultMap = (Map<String, Object>) service.getObject(paramMap);
-         
- /*
- * 
- * 2018. 6. 20. 오전 11:45:00 written by cla:p  
- * 
- */
       } else if ("list".equalsIgnoreCase(action)) {
          viewName = viewName + action;
          resultList = (List<Object>) service.getList(paramMap);
@@ -66,7 +61,9 @@ public class MemberController {
       else if ("signup".equalsIgnoreCase(action)) {
     	  viewName = viewName + action;
       }else if ("merge".equalsIgnoreCase(action)) {
-    	  resultMap = (Map<String, Object>) service.saveObject(paramMap);
+    	  service.saveObject(paramMap);
+          viewName = viewName + "list";
+          resultList = (List<Object>) service.getList(paramMap);
       }else if ("insert".equalsIgnoreCase(action)) {
     	  //go to home
     	  viewName = "home";
