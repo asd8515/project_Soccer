@@ -19,9 +19,12 @@ var fn_setFormTagList = function(url, id, params) {
 							+ '<td>'+ item.EMAIL +'</td>'
 							+ '<td>'+ item.NAME +'</td>'
 							+ '<td>'+ item.AUTHORITY +'</td>'
-							+ '<td><button type="button" class="btn btn-primary">modify</button>'
-							+    '<button type="button" class="btn btn-primary">delete</button></td>'
-							+ '</tr>';
+							+ '<td>'
+							+ '<form role="form" method="POST" style="margin: 0 0 0 0">'
+							+ '<input type="hidden" id="" name="MEMBER_SEQ" value="'+ item.MEMBER_SEQ +'">'
+								+ '<button type="submit" class="btn btn-primary"  formaction="'+ '<c:url value="/member/list#" />'+'">modify</button>'
+								+ '<button type="submit" class="btn btn-primary"  formaction="'+ '<c:url value="/member/delete" />'+'">delete</button></td>'
+							+ '</form></tr>';
 			});
 			formTag += '</tbody><table>';
 			$('#'+id).html(formTag);

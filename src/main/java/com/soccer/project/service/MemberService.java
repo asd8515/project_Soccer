@@ -19,6 +19,9 @@ public class MemberService {
 	
     @Autowired
 	private CommonUtil commonUtil;
+    
+    @Autowired
+    private AuthorityRmemberService authorityRmemberService;
 	
 	//read, list
     public Object getObject(Object dataMap) {
@@ -37,7 +40,12 @@ public class MemberService {
 
     //---end of read, list  
     public Object deleteObject(Object dataMap) {
-    	String sqlMapId = "member.delete";
+    	
+    	//권한도 삭제 from AUTHORITY_REL
+    	String sqlMapId = "authorityRmember.delete";
+    	authorityRmemberService.deleteObject(dataMap);
+    	
+    	sqlMapId = "member.delete";
     	dao.deleteObject(sqlMapId, dataMap);
     	
     	//call getList() method.
@@ -50,23 +58,26 @@ public class MemberService {
     public Object saveObject(Object dataMap) {
     	Map<String, Object> paramMap = (Map<String, Object>) dataMap;
     	
-    	String defaultAuthorityID = "UUID-A001";
+    	String idAuthority = (String) paramMap.get("ID_AUTHORITY");
     	String uniqueSequence = (String) paramMap.get("MEMBER_SEQ");
     	
     	//signup case
-    	if(uniqueSequence == null){
+    	if(uniqueSequence == null || uniqueSequence ==""){
 			uniqueSequence = commonUtil.getUniqueSequence();
-			paramMap.put("ID_AUTHORITY", defaultAuthorityID);
+			
+			//default idAuthority = "UUID-A0001" is "USER"
+			idAuthority = "UUID-A001";
 		}
     	
     	paramMap.put("MEMBER_SEQ", uniqueSequence);
+    	paramMap.put("ID_AUTHORITY", idAuthority);
     	
     	String sqlMapId = "member.merge";
     	
-    	Integer resultKey = (Integer) dao.saveObject(sqlMapId, paramMap);
+    	Integer resultKey_ = (Integer) dao.saveObject(sqlMapId, paramMap);
     	
     	//authorities
-//		authorityRmemberService.insertObject(paramMap);
+    	authorityRmemberService.insertObject(paramMap);
 
     	
     	//call getObject() method.    	

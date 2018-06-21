@@ -10,7 +10,7 @@
 		<div class="inner">
 
 		<!-- Page Wrapper -->
-		<form role="form" action="<c:url value='/member/merge' />" method='POST'>
+		<form role="form" action="<c:url value='/member/insert' />" method='POST'>
 			<div class="container">
 				<label for="email"><b>Email</b></label><input type="text"
 					placeholder="Enter Email" name="EMAIL" required> 

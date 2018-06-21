@@ -53,7 +53,8 @@ public class MemberController {
          viewName = viewName + action;
          resultList = (List<Object>) service.getList(paramMap);
       } else if ("delete".equalsIgnoreCase(action)) {
-    	  viewName = viewName + action;
+    	  //go back to list
+    	  viewName = viewName + "list";
     	  resultList = (List<Object>) service.deleteObject(paramMap);
       }
     
@@ -65,6 +66,8 @@ public class MemberController {
       else if ("signup".equalsIgnoreCase(action)) {
     	  viewName = viewName + action;
       }else if ("merge".equalsIgnoreCase(action)) {
+    	  resultMap = (Map<String, Object>) service.saveObject(paramMap);
+      }else if ("insert".equalsIgnoreCase(action)) {
     	  //go to home
     	  viewName = "home";
     	  resultMap = (Map<String, Object>) service.saveObject(paramMap);

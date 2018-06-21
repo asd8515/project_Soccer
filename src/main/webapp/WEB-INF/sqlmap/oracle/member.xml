@@ -6,23 +6,33 @@
     
 <mapper namespace="member">
 	<select id="list" resultType="Map" parameterType="Map">
-	    select 
+<!-- 	    select 
 			MEMBER_SEQ	
 			, EMAIL
 			, NAME
 			, PHONE
 			, PASSWORD
-		from MEMBER
+		from MEMBER -->
+		select 
+			MEM.MEMBER_SEQ as MEMBER_SEQ
+			, MEM.EMAIL as EMAIL
+			, MEM.NAME  as NAME 
+			, MEM.PHONE as PHONE
+			, AUTH.AUTHORITY as AUTHORITY
+		from MEMBER MEM INNER JOIN AUTHORITY_REL AUTH_REL
+					 			ON MEM.MEMBER_SEQ = AUTH_REL.MEMBER_SEQ
+					 					INNER JOIN AUTHORITY AUTH
+			  							  		ON AUTH_REL.ID_AUTHORITY = AUTH.ID_AUTHORITY
  		<where>
  			<choose>
 			    <when test="SEARCH_OPTION == null">
 			        and 1=1
 			    </when>
 			    <when test="SEARCH_OPTION == 'BY_EMAIL'">
-			    	and EMAIL = #{SEARCH_KEYWORD}
+			    	and MEM.EMAIL = #{SEARCH_KEYWORD}
 			    </when>
 			    <when test="SEARCH_OPTION == 'BY_NAME'">
-			    	and NAME = #{SEARCH_KEYWORD}
+			    	and MEM.NAME = #{SEARCH_KEYWORD}
 			    </when>
 			    <otherwise>
 			    	and 1=1
@@ -33,14 +43,24 @@
 
 	<select id="read" resultType="Map" parameterType="Map">
 	    select 
+			MEM.MEMBER_SEQ as MEMBER_SEQ
+			, MEM.EMAIL as EMAIL
+			, MEM.NAME  as NAME 
+			, MEM.PHONE as PHONE
+			, AUTH.AUTHORITY as AUTHORITY
+		from MEMBER MEM INNER JOIN AUTHORITY_REL AUTH_REL
+					 			ON MEM.MEMBER_SEQ = AUTH_REL.MEMBER_SEQ
+					 					INNER JOIN AUTHORITY AUTH
+			  							  		ON AUTH_REL.ID_AUTHORITY = AUTH.ID_AUTHORITY
+<!-- 	    select 
 			MEMBER_SEQ	
 			, EMAIL
 			, NAME
 			, PHONE
 			, PASSWORD
-		from MEMBER
+		from MEMBER -->
 		<where>
-			and MEMBER_SEQ = #{MEMBER_SEQ}
+			and MEM.MEMBER_SEQ = #{MEMBER_SEQ}
 		    <!-- choose>	using by CustomizeUserDetailsService.java
 		        <when test="MEMBER_ID != null">
 					and MEMBER_ID = #{MEMBER_ID}

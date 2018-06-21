@@ -26,7 +26,6 @@ public class HomeController {
 
 	@RequestMapping(value = "/", method = { RequestMethod.GET, RequestMethod.POST })
 	public ModelAndView actionMethod(@RequestParam Map<String, Object> paramMap, ModelAndView modelandView) {
-
 		String viewName = "home";
 
 		Map<String, Object> resultMap = new HashMap<String, Object>();
