@@ -49,9 +49,8 @@ public class MatchingController {
     	  viewName = viewName + action;
     	  resultList = (List<Object>) service.deleteObject(paramMap);
       } else if ("insert".equalsIgnoreCase(action)) {
-    	  action = "list";
-    	  viewName = viewName + action;
-    	  resultList = (List<Object>) service.insertObject(paramMap);
+    	  viewName = "home";
+    	  resultMap = (Map<String, Object>) service.saveObject(paramMap);
       } else {
          viewName = viewName + "list";
          resultList = (List<Object>) service.getList(paramMap);
