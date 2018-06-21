@@ -41,16 +41,14 @@ public class MatchingController {
       // divided depending on action value
       if ("edit".equalsIgnoreCase(action)) {
          viewName = viewName + action;
+         resultMap = (Map<String, Object>) service.getObject(paramMap);
       } else if ("read".equalsIgnoreCase(action)) {
          viewName = viewName + action;
          resultMap = (Map<String, Object>) service.getObject(paramMap);
-      } else if ("list".equalsIgnoreCase(action)) {
-         viewName = viewName + action;
-//         resultList = (List<Object>) service.getList(paramMap);
-      } else if ("delete".equalsIgnoreCase(action)) {
+      }  else if ("delete".equalsIgnoreCase(action)) {
     	  viewName = viewName + action;
     	  resultList = (List<Object>) service.deleteObject(paramMap);
-      } else if ("add".equalsIgnoreCase(action)) {
+      } else if ("insert".equalsIgnoreCase(action)) {
     	  action = "list";
     	  viewName = viewName + action;
     	  resultList = (List<Object>) service.insertObject(paramMap);

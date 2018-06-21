@@ -34,12 +34,7 @@
 	</select>
 
 	<select id="read" resultType="Map" parameterType="Map">
-	    select 
-			MEMBER_SEQ	
-			, EMAIL
-			, NAME
-			, PHONE
-			, PASSWORD
+	    select *
 		from MEMBER
 		<where>
 			and MEMBER_SEQ = #{MEMBER_SEQ}
