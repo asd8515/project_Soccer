@@ -2,9 +2,8 @@
 
 <script>
 var fn_setFormTagList = function(url, id, params) {
-	console.log(params);
 	$.ajax({
-		type : "POST", url : url, data : JSON.stringify(params), cache : false
+		type : "POST", url : url, data : {'SEARCH_OPTION': '${paramMap.SEARCH_OPTION}', 'SEARCH_KEYWORD': '${paramMap.SEARCH_KEYWORD}'}, cache : false
 		, success : function(data) {
 			var formTag = "<table><thead>"
 						+ "<tr><th>MEMBER_SEQ</th>"
@@ -35,7 +34,7 @@ var fn_setFormTagList = function(url, id, params) {
 }
 $(function(){
 /* 	fn_setFormTagList("<c:url value='/ws/memberList' />", "memberDIV", "${resultMap.SEARCH_OPTION}"); */
-	fn_setFormTagList("<c:url value='/ws/memberList' />", "memberDIV", "{SEARCH_OPTION: ${paramMap.SEARCH_OPTION}, SEARCH_KEYWORD: ${paramMap.SEARCH_KEYWORD}}");
+	fn_setFormTagList("<c:url value='/ws/memberList' />", "memberDIV");
 });
 </script>
 
