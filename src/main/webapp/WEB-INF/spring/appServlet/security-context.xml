@@ -15,14 +15,14 @@
 					invalidate-session="true" delete-cookies="JSESSIONID" />
 		<csrf disabled="true" />
 		
+		<!-- 밑에 방식으로 사용(응용)하면 권한 전부 됌 -->
+		<intercept-url pattern="/matching/edit" access="hasAnyAuthority('UUID-A001','UUID-A002')"/>
+		<intercept-url pattern="/matching/register" access="hasAnyAuthority('UUID-A001','UUID-A002')"/>
+     
 		<!-- permitAll -->
 		<intercept-url pattern="/**" access="permitAll()"/>
-
-		<!-- 밑에 방식으로 사용(응용)하면 권한 전부 됌 -->
-		<!--intercept-url pattern="/matching/edit" access="hasAnyAuthority('UUID-A001','UUID-A002')"/-->
-      
    </http>
-
+   
 	<authentication-manager>
 		<authentication-provider>
 			<jdbc-user-service data-source-ref="dataSource"
