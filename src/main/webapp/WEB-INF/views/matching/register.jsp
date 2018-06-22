@@ -54,9 +54,9 @@
 						<div class="12u$">
 							<div class="select-wrapper">
 								<select name="MATCHED" id="demo-category">
-									<option>- Statement -</option>
-									<option value="">Before</option>
-									<option value="yes">Completed</option>
+									<option>- Status -</option>
+									<option value="UNMATCHED">UNMATCHED</option>
+									<option value="MATCHED">MATCHED</option>
 								</select>
 							</div>
 						</div>
