@@ -1,4 +1,22 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ page import="java.util.Map" %>
+
+<% 
+			String currentSearchOption =""; 
+
+			// 검색옵션 체크박스를 유지해 주기 위해서
+			if((String)((Map)request.getAttribute("paramMap")).get("SEARCH_OPTION") != null){
+				currentSearchOption = (String)((Map)request.getAttribute("paramMap")).get("SEARCH_OPTION");
+			}
+				
+			String emailChecked = "";
+			String nameChecked = "";
+			final String CHECKED = "checked";
+			
+			if (currentSearchOption.equals("BY_NAME")) nameChecked = CHECKED;
+			else emailChecked = CHECKED;
+		
+%>
 
 <script>
 var fn_setFormTagList = function(url, id, params) {
@@ -55,9 +73,9 @@ $(function(){
 			<form role="form" action="<c:url value='/member/list' />"	method='POST'>
 				<div class="row uniform">
 						<div class="4u 12u$(small)">
-							<input type="radio" id="SEARCH_OPTION_BY_EMAIL" name="SEARCH_OPTION" value="BY_EMAIL" checked>
+							<input type="radio" id="SEARCH_OPTION_BY_EMAIL" name="SEARCH_OPTION" value="BY_EMAIL" <% out.write(emailChecked); %> >
 							<label for="SEARCH_OPTION_BY_EMAIL">EMAIL</label>
-							<input type="radio" id="SEARCH_OPTION_BY_NAME" name="SEARCH_OPTION" value="BY_NAME">
+							<input type="radio" id="SEARCH_OPTION_BY_NAME" name="SEARCH_OPTION" value="BY_NAME"<% out.write(nameChecked); %> >
 							<label for="SEARCH_OPTION_BY_NAME">NAME</label>
 						</div>
 						<div class="10u 12u$(small)">

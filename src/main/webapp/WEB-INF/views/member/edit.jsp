@@ -1,7 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-
+<%@ page import="java.util.Map" %>
 
 		<!-- Main -->
 		<article id="main"> <header>
@@ -27,6 +25,7 @@
 						<label>Phone</label>
 						<input type="text" name="PHONE" id="" value='${resultMap.PHONE}' />
 					</div>
+										
 					<div class="6u 12u$(xsmall)">
 						<label>Password</label>
 						<input type="password" name="PASSWORD" id="INPUT_PASSWORD" value='${resultMap.PASSWORD}' />
@@ -38,11 +37,24 @@
 					<div class ="12u 12u$(small)">
 						<label>Authority</label>
 						<div class="6u 12u$(small)">
-							<input type="radio" id="AUTHORITY_USER" name="ID_AUTHORITY" value="UUID-A001" checked>
+							<input type="radio" id="AUTHORITY_USER" name="ID_AUTHORITY" value="UUID-A001"
+							 <%
+							 String currentAuthority = (String)((Map<String, Object>)request.getAttribute("resultMap")).get("AUTHORITY");
+							if ("USER".equals(currentAuthority)){
+							 %> checked
+								<% }
+							 %>
+							>
 							<label for="AUTHORITY_USER">USER</label>
 						</div>
 						<div class="6u 12u$(small)">
-							<input type="radio" id="AUTHORITY_MANAGER" name="ID_AUTHORITY" value="UUID-A002">
+							<input type="radio" id="AUTHORITY_MANAGER" name="ID_AUTHORITY" value="UUID-A002"
+							 <%
+							 if ("MANAGER".equals(currentAuthority)){
+								 out.write("checked");
+								 }
+							 %>
+							>
 							<label for="AUTHORITY_MANAGER">MANAGER</label>
 						</div>
 					</div>
