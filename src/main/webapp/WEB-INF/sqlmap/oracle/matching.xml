@@ -6,7 +6,9 @@
     
 <mapper namespace="matching">
 	<select id="list" resultType="Map" parameterType="Map">
-	    SELECT r.region as region
+		select * from member
+
+<!-- 	    SELECT r.region as region
             , l."LEVEL" as level_name
             , b.message as message
             , m.name as name
@@ -24,16 +26,16 @@
 			    	and r.region LIKE '%' || #{SEARCH_KEYWORD} || '%'
 			    </when>
 			    <when test="SEARCH_OPTION == 'BY_LEVEL'">
-			    	<!-- 대소문자 구문 안하도록 : 둘 다 소문자로 만들어서 비교. -->
+			    	대소문자 구문 안하도록 : 둘 다 소문자로 만들어서 비교.
 			    	and lower(l."LEVEL") LIKE '%' || lower(#{SEARCH_KEYWORD}) || '%'
-			    	<!-- 찐우 원본 코드 -->
-			    	<!-- and (l."LEVEL" LIKE '%' || #{SEARCH_KEYWORD} || '%' -->
+			    	찐우 원본 코드
+			    	and (l."LEVEL" LIKE '%' || #{SEARCH_KEYWORD} || '%'
 			    </when>
 			    <otherwise>
 			    	and 1=1
 			    </otherwise>
 		    </choose>
-		</where>
+		</where> -->
 	</select>
 
 	<select id="read" resultType="Map" parameterType="Map">
