@@ -28,7 +28,8 @@
 					<h2>${resultData.MESSAGE}</h2>
 					<p>
 						Level : ${resultData.LEVEL_NAME} <br>
-						registration date : ${resultData.WRITEDATE} <br>
+						Region : ${resultData.REGION} <br>
+						registration date : ${resultData.WRITEDATE}
 					</p>
 				</div>
 			</section>

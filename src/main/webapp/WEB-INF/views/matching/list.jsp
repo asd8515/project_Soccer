@@ -10,7 +10,7 @@ var fn_setFormTagList = function(url, id, params) {
 							+ "<th>Level</th>"
 							+ "<th>Message</th>"
 							+ "<th>Written by</th>"
-							+ "<th>Statement</th>"
+							+ "<th>Status</th>"
 							+ "<th>Reporting Date</th>"
 							+ "<th>MODIFY/DELETE</th>"
 						+ "<tr></thead>"

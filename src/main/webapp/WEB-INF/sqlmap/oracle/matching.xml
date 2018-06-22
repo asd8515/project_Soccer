@@ -98,7 +98,8 @@
 				, #{MESSAGE}
 				, #{MEMBER_SEQ}
 				, #{MATCHED}
-				, SYSDATE
+				, TO_CHAR(SYSDATE, 'YYYY.MM.DD HH24:MI:SS')
+
 			)
 		
 	</insert>

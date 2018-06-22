@@ -55,16 +55,15 @@
 						<div class="12u$">
 							<div class="select-wrapper">
 								<select name="MATCHED" id="demo-category">
-									<option>- Statement -</option>
-									<option value="">Before</option>
-									<option value="yes">Completed</option>
+									<option>- Status -</option>
+									<option value="UNMATCHED">UNMATCHED</option>
+									<option value="MATCHED">MATCHED</option>
 								</select>
 							</div>
 						</div>
 
 						<div class="12u$">
-							<textarea name="MESSAGE" id="demo-message"
-								value="${resultMap.MESSAGE}" placeholder="Enter your message" rows="6">${resultMap.MESSAGE}</textarea>
+							<textarea name="MESSAGE" id="demo-message" placeholder="Enter your message" rows="6">${resultMap.MESSAGE}</textarea>
 						</div>
 						<div class="12u$">
 							<ul class="actions">
