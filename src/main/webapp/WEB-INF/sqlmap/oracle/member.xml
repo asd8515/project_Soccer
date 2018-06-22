@@ -30,10 +30,14 @@
 			        and 1=1
 			    </when>
 			    <when test="SEARCH_OPTION == 'BY_EMAIL'">
-			    	and MEM.EMAIL = #{SEARCH_KEYWORD}
+			    	<!-- 대소문자 구문 안하도록 : 둘 다 소문자로 만들어서 비교. -->
+			    	and lower(MEM.EMAIL) LIKE '%' || lower(#{SEARCH_KEYWORD}) || '%'
+			    	<!-- and MEM.EMAIL = #{SEARCH_KEYWORD} -->
 			    </when>
 			    <when test="SEARCH_OPTION == 'BY_NAME'">
-			    	and MEM.NAME = #{SEARCH_KEYWORD}
+			    	<!-- 대소문자 구문 안하도록 : 둘 다 소문자로 만들어서 비교. -->
+			    	and lower(MEM.NAME) LIKE '%' || lower(#{SEARCH_KEYWORD}) || '%'
+			    	<!-- and MEM.NAME = #{SEARCH_KEYWORD} -->
 			    </when>
 			    <otherwise>
 			    	and 1=1
