@@ -6,9 +6,7 @@
     
 <mapper namespace="matching">
 	<select id="list" resultType="Map" parameterType="Map">
-		select * from member
-
-<!-- 	    SELECT r.region as region
+ 	    SELECT r.region as region
             , l."LEVEL" as level_name
             , b.message as message
             , m.name as name
@@ -37,7 +35,7 @@
 			    	and 1=1
 			    </otherwise>
 		    </choose>
-		</where> -->
+		</where> 
 	</select>
 
 	<select id="read" resultType="Map" parameterType="Map">
