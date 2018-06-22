@@ -27,6 +27,13 @@ public class MatchingService {
     	return resultObject;
     }
     
+    public Object getObjectNameEmail(Object dataMap) {
+    	String sqlMapId = "matching.readnameemail";
+    	Object resultObject = dao.getObject(sqlMapId, dataMap);
+    	    	
+    	return resultObject;
+    }
+    
     public Object getList(Object dataMap) {
     	String sqlMapId = "matching.list";
         Object resultList = dao.getList(sqlMapId, dataMap);

@@ -23,9 +23,13 @@ var fn_setFormTagList = function(url, id, params) {
 							+ '<td>'+ item.NAME +'</td>'
 							+ '<td>'+ item.MATCHED +'</td>'
 							+ '<td>'+ item.WRITEDATE +'</td>'
-							+ '<td><button type="button" class="btn btn-primary">modify</button>'
-							+    '<button type="button" class="btn btn-primary">delete</button></td>'
-							+ '</tr>';
+							+ '<td>'
+							+ '<form role="form" method="POST" style="margin: 0 0 0 0">'
+							+ '<input type="hidden" id="" name="GAME_SEQ" value="'+ item.GAME_SEQ +'">'
+							+ '<input type="hidden" id="" name="MEMBER_SEQ" value="'+ item.MEMBER_SEQ +'">'
+								+ '<button type="submit" class="btn btn-primary"  formaction="'+ '<c:url value="/matching/edit" />'+'">modify</button>'
+								+ '<button type="submit" class="btn btn-primary"  formaction="'+ '<c:url value="/matching/delete" />'+'">delete</button></td>'
+							+ '</form></tr>';
 			});
 			formTag += '</tbody><table>';
 			$('#'+id).html(formTag);

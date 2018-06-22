@@ -12,6 +12,8 @@
             , m.name as name
             , b.matched as matched
             , b.writedate as writedate
+            , b.game_seq as game_seq
+            , b.member_seq as member_seq
 		FROM BOARD b INNER JOIN REGION r ON b.id_region = r.id_region
                      INNER JOIN FB_LEVEL l ON b.id_level = l.id_level
                      INNER JOIN MEMBER m ON b.member_seq = m.member_seq
@@ -37,19 +39,35 @@
 	</select>
 
 	<select id="read" resultType="Map" parameterType="Map">
-	    select *
-		from MEMBER
-		<where>
-			and MEMBER_SEQ = #{MEMBER_SEQ}
-		    <!-- choose>	using by CustomizeUserDetailsService.java
-		        <when test="MEMBER_ID != null">
-					and MEMBER_ID = #{MEMBER_ID}
-		        </when>
-		        <when test="MEMBER_SEQ != null">
-					and MEMBER_SEQ = #{MEMBER_SEQ}
-		        </when>
-		    </choose-->
-		</where>
+	    SELECT b.ID_REGION as ID_REGION
+            , b.ID_LEVEL as ID_LEVEL
+            , b.message as message
+            , m.member_seq as member_seq
+            , m.name as name
+            , m.email as email
+            , b.matched as matched
+            , b.writedate as writedate
+            , b.game_seq as game_seq
+		FROM BOARD b INNER JOIN MEMBER m ON b.member_seq = m.member_seq
+		WHERE b.game_seq = #{GAME_SEQ}
+<!-- 		<where> -->
+<!-- 			<choose> -->
+<!-- 		 		<when test="GAME_SEQ != null and GAME_SEQ == ''"> -->
+<!-- 		    	</when> -->
+<!-- 			    <otherwise> -->
+<!-- 			    	and 1=1 -->
+<!-- 			    </otherwise> -->
+<!-- 		    </choose> -->
+<!-- 		</where> -->
+
+<!-- select * -->
+<!-- from member -->
+<!-- where member_seq = #{MEMBER_SEQ} -->
+	</select>
+	<select id="readnameemail" resultType="Map" parameterType="Map">
+	    SELECT *
+		FROM MEMBER
+		WHERE MEMBER_SEQ = #{MEMBER_SEQ}
 	</select>
 
 	<insert id="merge" parameterType="Map">
@@ -86,7 +104,7 @@
 	</insert>
 
 	<delete id="delete" parameterType="Map">
-		delete from MEMBER
-		where MEMBER_SEQ = #{MEMBER_SEQ}
+		delete from BOARD
+		where GAME_SEQ = #{GAME_SEQ}
 	</delete>
 </mapper>

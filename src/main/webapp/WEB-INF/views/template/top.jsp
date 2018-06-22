@@ -15,7 +15,7 @@
 				<ul>
 					<li><a href="<c:url value='/'/> ">Home</a></li>
 					<li><a href="<c:url value='/matching/list'/> ">Game list</a></li>
-					<li><a href="<c:url value='/matching/edit?MEMBER_SEQ=${principalName} '/> ">Register Matching</a></li>
+					<li><a href="<c:url value='/matching/register?MEMBER_SEQ=${principalName} '/> ">Register Matching</a></li>
 					<li><a href="<c:url value='/member/list'/> ">Member list</a></li>
 					<li><a href="<c:url value='/member/signup'/> ">Sign up</a></li>
 					<li><a href="<c:url value='/login'/> ">Log in</a></li>

@@ -14,7 +14,6 @@
 			<section>
 				<h4>Matching Board</h4>
 				<form method="post" action="<c:url value='/matching/insert' />">
-					<input type="hidden" name="GAME_SEQ" value="${resultMap.GAME_SEQ}" />
 					<input type="hidden" name="MEMBER_SEQ" value="${resultMap.MEMBER_SEQ}" />
 					<div class="row uniform">
 						<div class="6u 12u$(xsmall)">
