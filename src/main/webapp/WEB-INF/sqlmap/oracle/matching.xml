@@ -14,6 +14,7 @@
             , b.writedate as writedate
             , b.game_seq as game_seq
             , b.member_seq as member_seq
+            , b.matched as matched
 		FROM BOARD b INNER JOIN REGION r ON b.id_region = r.id_region
                      INNER JOIN FB_LEVEL l ON b.id_level = l.id_level
                      INNER JOIN MEMBER m ON b.member_seq = m.member_seq
@@ -26,10 +27,10 @@
 			    	and r.region LIKE '%' || #{SEARCH_KEYWORD} || '%'
 			    </when>
 			    <when test="SEARCH_OPTION == 'BY_LEVEL'">
-			    	대소문자 구문 안하도록 : 둘 다 소문자로 만들어서 비교.
+			    	<!-- 대소문자 구문 안하도록 : 둘 다 소문자로 만들어서 비교. -->
 			    	and lower(l."LEVEL") LIKE '%' || lower(#{SEARCH_KEYWORD}) || '%'
-			    	찐우 원본 코드
-			    	and (l."LEVEL" LIKE '%' || #{SEARCH_KEYWORD} || '%'
+			    	<!-- 찐우 원본 코드
+			    	and (l."LEVEL" LIKE '%' || #{SEARCH_KEYWORD} || '%' -->
 			    </when>
 			    <otherwise>
 			    	and 1=1

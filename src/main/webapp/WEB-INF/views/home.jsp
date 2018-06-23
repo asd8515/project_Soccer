@@ -7,18 +7,18 @@
 		<div class="inner">
 			<h2>crazy about football</h2>
 			<p>
-				People who like football<br /> Through this app<br /> Matching
+				People who like football<br /> Through this page<br />Matching
 				System</a>.
 			</p>
 			<ul class="actions">
-				<li><a href="#" class="button special">Activate</a></li>
+				<li><a href="<c:url value='/matching/list'/> " class="button special">GO TO PLAY!</a></li>
 			</ul>
 		</div>
-		<a href="#two" class="more scrolly">Learn More</a>
+		<a href="#two" class="more scrolly">GAMES ARE WATING</a>
 	</section>
 
 	<!-- Two -->
-	<section id="two" class="wrapper alt style2">
+	<section id="two" class="wrapper alt style1">
 		<c:forEach items="${resultList}" var="resultData" varStatus="loop">
 			<section class="spotlight">
 				<div class="image">

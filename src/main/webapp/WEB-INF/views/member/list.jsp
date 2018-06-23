@@ -79,7 +79,7 @@ $(function(){
 							<label for="SEARCH_OPTION_BY_NAME">NAME</label>
 						</div>
 						<div class="10u 12u$(small)">
-							<input type="text" id="" name="SEARCH_KEYWORD"
+							<input type="text" id="" name="SEARCH_KEYWORD" value="${paramMap.SEARCH_KEYWORD}"
 								placeholder="please type keyword.">
 						</div>
 						<div class="2u 12u$(small)">

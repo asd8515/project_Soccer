@@ -1,4 +1,24 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ page import="java.util.Map" %>
+
+<% 
+			String currentSearchOption =""; 
+
+			// 검색옵션 체크박스를 유지해 주기 위해서
+			if((String)((Map)request.getAttribute("paramMap")).get("SEARCH_OPTION") != null){
+				currentSearchOption = (String)((Map)request.getAttribute("paramMap")).get("SEARCH_OPTION");
+			}
+				
+			String locationChecked = "";
+			String levelChecked = "";
+			final String CHECKED = "checked";
+			
+			
+			//location default
+			if (currentSearchOption.equals("BY_LEVEL")) levelChecked = CHECKED;
+			else locationChecked = CHECKED;
+		
+%>
 
 <script>
 var fn_setFormTagList = function(url, id, params) {
@@ -60,14 +80,13 @@ $(function(){
 			<form role="form" action="<c:url value='/matching/list' />"	method='POST'>
 				<div class="row uniform">
 						<div class="4u 12u$(small)">
-							<input type="radio" id="SEARCH_OPTION_BY_LOCATION" name="SEARCH_OPTION" value="BY_LOCATION" checked>
+							<input type="radio" id="SEARCH_OPTION_BY_LOCATION" name="SEARCH_OPTION" value="BY_LOCATION"  <% out.write(locationChecked); %> >
 							<label for="SEARCH_OPTION_BY_LOCATION">LOCATION</label>
-							<input type="radio" id="SEARCH_OPTION_BY_LEVEL" name="SEARCH_OPTION" value="BY_LEVEL">
+							<input type="radio" id="SEARCH_OPTION_BY_LEVEL" name="SEARCH_OPTION" value="BY_LEVEL"  <% out.write(levelChecked); %>>
 							<label for="SEARCH_OPTION_BY_LEVEL">LEVEL</label>
 						</div>
 						<div class="10u 12u$(small)">
-							<input type="text" id="" name="SEARCH_KEYWORD"
-								placeholder="please type keyword.">
+							<input type="text" id="" name="SEARCH_KEYWORD" value="${paramMap.SEARCH_KEYWORD}">
 						</div>
 						<div class="2u 12u$(small)">
 							<button type="submit">SEARCH</button>
