@@ -16,7 +16,6 @@
 		</div>
 		<a href="#two" class="more scrolly">GAMES ARE WATING</a>
 	</section>
-
 	<!-- Two -->
 	<section id="two" class="wrapper alt style1">
 		<c:forEach items="${resultList}" var="resultData" varStatus="loop">

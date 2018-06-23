@@ -5,8 +5,8 @@
 <!-- Main -->
 <article id="main">
 	<header>
-		<h2>Register Matching</h2>
-		<p>Aliquam ut ex ut interdum donec amet imperdiet eleifend</p>
+		<h2>REGISTER MATCHING</h2>
+		<p>REGISTER YOUR GAME TO PLAY WITH YOUR NEW FRIENDS</p>
 	</header>
 	<section class="wrapper style5">
 		<div class="inner">
